@@ -1,22 +1,34 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import fetchData from "./redux/reducers/greetingSlice";
+import fetchMessage from "./redux/reducers/messageSlice";
 
 function Greeting() {
-  const greetingMsg = useSelector((state) => state.greeting.greetings);
-  console.log(greetingMsg);
-
   const dispatch = useDispatch();
+  const message = useSelector((state) => state.message.message);
+  console.log(message);
+  const status = useSelector((state) => state.message.status);
+  console.log(status);
+
+
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchMessage());
   }, [dispatch]);
 
+  let content;
+
+  if (status === 'loading') {
+    content = 'Loading...';
+  } else if (status === 'succeeded') {
+    content = message.content;
+  } else if (status === 'failed') {
+    content = 'Error loading message.';
+  }
+
   return (
-    <>
-      <h1>Greeting</h1>
-      <div>{greetingMsg}</div>
-    </>
-  );
+  <>
+  <div>{content}</div>
+  <h1>Hello, World!</h1>
+  </>)
 }
 
 export default Greeting;
