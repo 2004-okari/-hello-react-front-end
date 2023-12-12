@@ -5,6 +5,8 @@ import fetchMessage from "./redux/reducers/messageSlice";
 function Greeting() {
   const dispatch = useDispatch();
   const message = useSelector((state) => state.message.message);
+  const message2 = useSelector((state) => state.message);
+  console.log(message2);
   console.log(message);
   const status = useSelector((state) => state.message.status);
   console.log(status);
