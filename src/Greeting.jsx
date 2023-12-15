@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGreetings } from './redux/reducers/greetingSlice';
+
 const Greeting = () => {
   const dispatch = useDispatch();
   const greeting = useSelector((state) => state.greetings.value.message);
-  console.log("Greeting: ", greeting);
+  console.log('Greeting: ', greeting);
 
   useEffect(() => {
     dispatch(fetchGreetings());
